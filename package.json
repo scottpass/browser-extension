@@ -1,0 +1,27 @@
+{
+  "name": "browser-extension",
+  "version": "1.0.0",
+  "description": "Scott Pass Browser Extension",
+  "main": "index.js",
+  "repository": "github.com/scottpass/browser-extension",
+  "author": "scott@scottpass.com",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "@types/chrome": "^0.0.246",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
+    "copy-webpack-plugin": "^11.0.0",
+    "eslint": "^8.49.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.2.2",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "scripts": {
+    "build": "webpack --mode=production",
+    "watch": "webpack --mode=development --watch -d source-map",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Scott Pass",
+  "version": "1.0.0",
+  "description": "Scott's Password Manager",
+  "icons": {
+    "16": "images/icon16.png",
+    "32": "images/icon32.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png",
+    "512": "images/icon512.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "32": "images/icon32.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png",
+      "512": "images/icon512.png"
+    },
+    "default_title": "Scott Pass"
+  },
+  "background": {
+      "service_worker": "service_worker.js"
+  },
+  "author": "scott@scottpass.com",
+  "permissions" : [
+    "nativeMessaging"
+  ]
+}
+    
