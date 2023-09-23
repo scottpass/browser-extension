@@ -5,7 +5,10 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "module": "ES2022",
-    "target": "ES2022"
+    "target": "ES2022",
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true
   },
-  "include":["src"]
+  "include":["src"],
+  "moduleResolution": "node",
 }
