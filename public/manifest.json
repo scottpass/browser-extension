@@ -18,7 +18,8 @@
       "128": "images/icon128.png",
       "512": "images/icon512.png"
     },
-    "default_title": "Scott Pass"
+    "default_title": "Scott Pass",
+    "default_popup": "popover.html"
   },
   "background": {
       "service_worker": "service_worker.js"
