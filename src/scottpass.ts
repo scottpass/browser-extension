@@ -1,6 +1,6 @@
 export type MessageKind = "Request" | "Response";
 
-type RequestMessage = PingRequestMessage | GetConfigRequestMessage;
+export type RequestMessage = PingRequestMessage | GetConfigRequestMessage;
 type ResponseMessage = PingResponseMessage | ErrorResponseMessage | GetConfigResponseMessage | EventMessage;
 type RequestBodyType = "PingRequest" | "GetConfigRequest";
 

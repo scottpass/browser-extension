@@ -1,19 +1,15 @@
-import './popover.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import NoTools from './notools'
 
-function Popover() : JSX.Element {
-  return (
-    <>
-        <div className="App">
-            Hello World
-        </div>
-    </>
-  )
+async function Popover() : Promise<JSX.Element> {
+    return <NoTools />
 }
+
+var p = await Popover();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <Popover />
+        {p}
     </React.StrictMode>,
 )
