@@ -1,0 +1,60 @@
+div.short-window {
+    width: 400px;
+    height: 300px;
+}
+
+/* This is a hack */
+div.spinner-container {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 128px;
+    height:  128px;
+}
+
+div.short-window > h1 {
+    height: 64px;
+    padding: 0;
+    margin: 0;
+}
+
+div.short-window > h1 > img {
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:0px;
+    padding-bottom: 0px;
+    vertical-align: middle;
+    margin:0;
+}
+
+div.short-window > h1 > span {
+    font-size:17pt;
+    vertical-align:middle;
+    text-align: left;
+    color: #6a96e1;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+}
+
+p.dialog-text {
+    font-size: 14pt;
+    text-align: left;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+    line-height: 28px;
+    color: black;
+}
+
+button {
+    font-size:16pt;
+    margin: auto;
+    padding:10px;
+    border-radius: 10px;
+    min-width: 125px;
+    background-color: #6a96e1;
+    color: white;
+    display: block;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+}
