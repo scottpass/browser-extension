@@ -1,8 +1,10 @@
 export type MessageKind = "Request" | "Response";
 
-export type RequestMessage = PingRequestMessage | GetConfigRequestMessage;
-type ResponseMessage = PingResponseMessage | ErrorResponseMessage | GetConfigResponseMessage | EventMessage;
-type RequestBodyType = "PingRequest" | "GetConfigRequest";
+export type RequestMessage = PingRequestMessage | CreateAccountRequestMessage
+type ResponseMessage = PingResponseMessage | ErrorResponseMessage | EventMessage | CreateAccountResponseMessage;
+type RequestBodyType = "PingRequest" | "CreateAccountRequest"
+type ClientType = "Chrome";
+type CryptoProvider = "AppleEnclave" | "YubiKey" | "Unprotected";
 
 type EventMessage = {
     Kind: "Event";
@@ -17,6 +19,34 @@ type PingRequestMessage = {
     BodyType: "PingRequest";
     Body: Record<never, never>;
 };
+
+type CreateAccountRequestMessage = {
+    Kind: "Request";
+    RequestID: string;
+    BodyType: "CreateAccountRequest";
+    Body: CreateAccountRequest;
+};
+
+type CreateAccountRequest = {
+    Email : string;
+    ClientType: ClientType
+    CryptoProvider: CryptoProvider;
+    DeviceName: string;
+}
+
+type CreateAccountResponseMessage = {
+    Kind: "Response";
+    RequestID: string;
+    BodyType: "CreateAccountResponse";
+    Body: CreateAccountResponse;
+};
+
+type CreateAccountResponse = {
+    AccountID: string;
+    Email: string;
+    Created: string;
+    DeviceName: string;
+}
 
 export type PingResponse = {
     "ServerVersion": string;
@@ -42,25 +72,6 @@ export type ErrorResponse = {
     "Message": string;
 }
 
-type GetConfigRequestMessage = {
-    Kind: "Request";
-    RequestID: string;
-    BodyType: "GetConfigRequest";
-    Body: Record<never, never>;
-};
-
-type GetConfigResponseMessage = {
-    Kind: "Response";
-    RequestID: string;
-    BodyType: "GetConfigResponse";
-    Body: GetConfigResponse;
-}
-
-export type GetConfigResponse = {
-    "WorkingDirectory": string;
-    "BaseURL": string;
-    "CAFile": string;
-}
 
 type PromisePair = {
     resolve: (value: any) => void;
@@ -79,6 +90,11 @@ export class ScottPass {
         this.port.onDisconnect.addListener(this.onDisconnect.bind(this));
         this.port.onMessage.addListener(this.onMessage.bind(this));
         this.onEvent = new EventTarget();
+        this.connected = true;
+    }
+
+    public close() {
+        this.port.disconnect();
     }
 
     private onDisconnect() {
@@ -115,8 +131,8 @@ export class ScottPass {
         return this.sendRequest<PingResponse>("PingRequest", {})
     }
 
-    public getConfiguration(): Promise<GetConfigResponse> {
-        return this.sendRequest<GetConfigResponse>("GetConfigRequest", {})
+    public createAccount(request: CreateAccountRequest): Promise<CreateAccountResponse> {
+        return this.sendRequest<CreateAccountResponse>("CreateAccountRequest", request)
     }
 
     private sendRequest<T>(requestType: RequestBodyType, requestBody: any) : Promise<T> {
